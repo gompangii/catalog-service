@@ -24,5 +24,10 @@ spring:
         max-interval: 2000  # 2초
         multiplier: 1.1
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh   # HTTP를 통해 /actuator/refresh 엔트 포인트를 노출한다.
 polar:
   greeting: Welcome to the local book catalog!
