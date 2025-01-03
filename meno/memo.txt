@@ -7,3 +7,21 @@ curl -X POST -H "Content-Type: application/json" -d '{"author" : "Jon Snow", "ti
 
 
 
+# 4.2.1 커맨드라인 이수를 통한 애플리케이션 설정
+java -jar build/libs/catalog-service-0.0.1-SNAPSHOT.jar --polar.greeting="Welcaome to the catalog from CLI"
+
+# 4.2.2 JVM 시스템 속성을 통해 애플리케이션 구성
+java -Dpolar.greeting="Welcaome to the catalog from JVM" -jar build/libs/catalog-service-0.0.1-SNAPSHOT.jar
+java -Dpolar.greeting="Welcaome to the catalog from JVM" -jar build/libs/catalog-service-0.0.1-SNAPSHOT.jar --polar.greeting="Welcaome to the catalog from CLI"
+
+# 4.2.3 환경 변수를 통해 애플리케이션 구성
+## 윈도우 cmd 창에서 테스트 할 경우
+ > set POLAR_GREETING="Welcaome to the catalog from ENV"
+ > java -jar build/libs/catalog-service-0.0.1-SNAPSHOT.jar
+
+# 4.4.1 설정 클라이언트 구축
+ > java -jar build/libs/catalog-service-0.0.1-SNAPSHOT.jar
+## prod 환경으로 설정
+ > java -jar build/libs/catalog-service-0.0.1-SNAPSHOT.jar --spring.profiles.active=prod
+
+
