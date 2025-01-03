@@ -28,6 +28,6 @@ management:
   endpoints:
     web:
       exposure:
-        include: refresh   # HTTP를 통해 /actuator/refresh 엔트 포인트를 노출한다.
+        include: refresh
 polar:
   greeting: Welcome to the local book catalog!
