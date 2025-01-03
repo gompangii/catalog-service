@@ -15,6 +15,14 @@ spring:
   cloud:
     config:
       uri: http://localhost:8888
+      request-connection-timeout: 5000  # 5초
+      request-read-timeout: 5000   # 5초
+      fail-fast: true   # 운영환경은 true로 설정
+      retry:
+        max-attempts: 6
+        initial-interval: 1000  # 1초
+        max-interval: 2000  # 2초
+        multiplier: 1.1
 
 polar:
   greeting: Welcome to the local book catalog!
