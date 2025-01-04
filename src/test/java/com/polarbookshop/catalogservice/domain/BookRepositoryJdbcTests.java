@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.data.jdbc.core.JdbcAggregateTemplate;
 import org.springframework.test.context.ActiveProfiles;
 import org.testcontainers.containers.MariaDBContainer;
+import org.testcontainers.junit.jupiter.Container;
 
 import java.util.Optional;
 import java.util.stream.Collectors;
