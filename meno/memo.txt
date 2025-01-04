@@ -25,3 +25,21 @@ java -Dpolar.greeting="Welcaome to the catalog from JVM" -jar build/libs/catalog
  > java -jar build/libs/catalog-service-0.0.1-SNAPSHOT.jar --spring.profiles.active=prod
 
 
+# 5.4.2 플라웨이를 이용한 데이터베이스 스키마 초기화를 위해 삭제한 내용
+## schema.sql 파일 내용 플라웨이 적용을 위해 삭제 함
+DROP TABLE IF EXISTS book;
+CREATE TABLE book (
+	id                  INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	author              VARCHAR(255) NOT NULL,
+	isbn                VARCHAR(255) NOT NULL UNIQUE,
+	price               DOUBLE NOT NULL,
+	title               VARCHAR(255) NOT NULL,
+	created_date        TIMESTAMP NOT NULL,
+    last_modified_date  TIMESTAMP NOT NULL,
+	`version`           INT NOT NULL
+);
+
+## application.yml 파일에서 플라웨이 적용을 위해 삭제
+  sql:
+    init:
+      mode: always
