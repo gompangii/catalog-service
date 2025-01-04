@@ -8,6 +8,7 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.context.annotation.Import;
 import org.springframework.data.jdbc.core.JdbcAggregateTemplate;
 import org.springframework.test.context.ActiveProfiles;
+import org.testcontainers.containers.MariaDBContainer;
 
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -20,6 +21,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @ActiveProfiles("integration")
 class BookRepositoryJdbcTests {
+  @Container
+  MariaDBContainer MARIADB_CONTAINER = new MariaDBContainer("mariadb:10.11");
+
+
   @Autowired
   private BookRepository bookRepository;
 
