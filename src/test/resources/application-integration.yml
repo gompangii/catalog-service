@@ -1,8 +1,3 @@
 spring:
   datasource:
-    username: root
-    password: mariadb
-    url: jdbc:mariadb://mariadb.mypc.myvbox:3306/polardb_catalog
-    hikari:
-      connection-timeout: 2000 #ms
-      maximum-pool-size: 5
+    url: jdbc:tc:postgresql:14.12:///
