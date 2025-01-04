@@ -17,12 +17,23 @@ spring:
       uri: http://localhost:8888
       request-connection-timeout: 5000  # 5초
       request-read-timeout: 5000   # 5초
-      fail-fast: true   # 운영환경은 true로 설정
+      fail-fast: false   # 운영환경은 true로 설정, 컨피그 서버가 기동 되지 않아고 클라이언트 기동 가능
       retry:
         max-attempts: 6
         initial-interval: 1000  # 1초
         max-interval: 2000  # 2초
         multiplier: 1.1
+
+  datasource:
+    username: root
+    password: mariadb
+    url: jdbc:mariadb://mariadb.mypc.myvbox:3306/polardb_catalog
+    hikari:
+      connection-timeout: 2000 #ms
+      maximum-pool-size: 5
+  sql:
+    init:
+      mode: always
 
 management:
   endpoints:
