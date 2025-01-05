@@ -6,7 +6,7 @@ RUN java -Djarmode=layertools -jar catalog-service.jar extract
 
 FROM eclipse-temurin:17
 WORKDIR workspace
-COPY --from=builder workspace/dependecies/ ./
+COPY --from=builder workspace/dependencies/ ./
 COPY --from=builder workspace/spring-boot-loader/ ./
 COPY --from=builder workspace/snapshot-dependencies/ ./
 COPY --from=builder workspace/application/ ./
