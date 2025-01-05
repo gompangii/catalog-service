@@ -66,9 +66,11 @@ CREATE TABLE book (
     -e SPRING_DATASOURCE_URL=jdbc:mariadb://192.168.56.40:3306/polardb_catalog \
     -e SPRING_PROFILES_ACTIVE=testdata \
     catalog-service
-
 ## 도커 로그보기
  > docker logs catalog-service
+## 도커 컨테이너 삭제
+ > docker rm -f catalog-service
+
 
 
 
