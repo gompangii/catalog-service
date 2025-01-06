@@ -5,7 +5,9 @@ curl -X POST -H "Content-Type: application/json" -d '{"author" : "Lyra Silver", 
 # 3.3.3 테스트
 curl -X POST -H "Content-Type: application/json" -d '{"author" : "Jon Snow", "title" : "", "isbn" : "123ABC456Z",  "price" : "9.90" }' http://localhost:38080/books
 
-
+# 3.5.1 배포 파이프라인의 커밋 단계 이해
+## 그라이프(grype, 취약성 스캐너) 설치 (https://github.com/anchore/grype 참조)
+ > curl -sSfL https://raw.githubusercontent.com/anchore/grype/main/install.sh | sh -s -- -b /usr/local/bin
 
 # 4.2.1 커맨드라인 이수를 통한 애플리케이션 설정
 java -jar build/libs/catalog-service-0.0.1-SNAPSHOT.jar --polar.greeting="Welcaome to the catalog from CLI"
