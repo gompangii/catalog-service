@@ -61,12 +61,15 @@ bootRun {
 
 bootBuildImage {
 	imageName = "${project.name}"
+	publish = true
 	environment = ["BP_JVM_VERSION": "17"]
 
 	docker {
-		username = project.findProperty("registryUsername")
-		password = project.findProperty("registryToken")
-		url = project.findProperty("registryUrl")
+		publishRegistry {
+			username = project.findProperty("registryUsername")
+			password = project.findProperty("registryToken")
+			url = project.findProperty("registryUrl")
+		}
 	}
 }
 
