@@ -2,7 +2,7 @@ name: Commit Stage
 on: push
 
 env:
-  REGISTRY: docker.io
+  REGISTRY: ghrc.io
   IMAGE_NAME: gompangii/catalog-service
   VERSION: latest
 
