@@ -2,7 +2,7 @@ name: Commit Stage
 on: push
 
 env:
-  REGISTRY: ghrc.io
+  REGISTRY: ghcr.io
   IMAGE_NAME: gompangii/catalog-service
   VERSION: latest
 
@@ -64,4 +64,3 @@ jobs:
             --imageName ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
       - name: Publish container image
         run: docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
-        
