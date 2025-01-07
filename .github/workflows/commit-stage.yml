@@ -2,7 +2,7 @@ name: Commit Stage
 on: push
 
 env:
-  REGISTRY: docker.io
+  REGISTRY: ghcr.io
   IMAGE_NAME: gompangii/catalog-service
   VERSION: latest
 
@@ -63,8 +63,8 @@ jobs:
             -x test \
             --imageName ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }} \
             -PregistryUrl=${{ env.REGISTRY }} \
-            -PregistryUsername=${{ secrets.DOCKER_USER }} \
-            -PregistryToken=${{ secrets.DOCKER_TOKEN }}
+            -PregistryUsername=${{ github.actor }} \
+            -PregistryToken=${{ secrets.CR_PAT }}
       - name: OCI image vulnerability scanning
         uses: anchore/scan-action@v3
         id: scan
@@ -83,7 +83,9 @@ jobs:
         uses: docker/login-action@v3
         with:
           registry: ${{ env.REGISTRY }}
-          username: ${{ secrets.DOCKER_USER }}
-          password: ${{ secrets.DOCKER_TOKEN }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.CR_PAT }}
+          # username: ${{ secrets.DOCKER_USER }}
+          # password: ${{ secrets.DOCKER_TOKEN }}
       - name: Publish container image
         run: docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
