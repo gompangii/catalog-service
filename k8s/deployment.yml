@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: catalog-service
-          image: gompangii/catalog-service
+          image: docker.io/gompangii/catalog-service:latest
           imagePullPolicy: IfNotPresent
           lifecycle:
             preStop:
