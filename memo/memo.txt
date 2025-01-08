@@ -75,7 +75,7 @@ CREATE TABLE book (
 
 
 # 6.2.4 클라우드 네이티브 빌드팩을 이용한 스프링 부트 컨테이너화 - image registry에 이미지 배포
- > ./gradle bootBuild
+ > ./gradlew bootBuildImage --imageName docker.io/gompangii/catalog-service --publishImage -PregistryUrl=docker.io -PregistryUsername=gompangii -PregistryToken=<token>
 
 
 
