@@ -26,7 +26,6 @@ spring:
         initial-interval: 1000  # 1초
         max-interval: 2000  # 2초
         multiplier: 1.1
-
   datasource:
     username: root
     password: mariadb
@@ -37,7 +36,11 @@ spring:
   sql:
     init:
       mode: always
-
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://192.168.56.40:8080/realms/PolarBookshop
 management:
   endpoints:
     web:
