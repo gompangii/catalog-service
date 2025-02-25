@@ -4,10 +4,12 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
+
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
+import jakarta.validation.ValidatorFactory;
+
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -26,14 +28,14 @@ class BookValidationTests {
   void whenAllFieldsCorrectThenValidationSucceeds() {
     Book book;
     System.out.println("teest...");
-    book = Book.of("1234567890", "Title", "Author", 9.90);
+    book = Book.of("1234567890", "Title", "Author", 9.90, "Polarsophia");
     Set<ConstraintViolation<Book>> violations = validator.validate(book);
     assertThat(violations).isEmpty();
   }
 
   @Test
   void whenIsbnNotDefinedThenValidationFails() {
-    var book = Book.of("", "Title", "Author", 9.90);
+    var book = Book.of("", "Title", "Author", 9.90, "Polarsophia");
     Set<ConstraintViolation<Book>> violations = validator.validate(book);
     assertThat(violations).hasSize(2);
     List<String> constraintViolationMessages = violations.stream()
