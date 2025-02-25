@@ -6,13 +6,16 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.annotation.web.configurers.oauth2.server.resource.OAuth2ResourceServerConfigurer;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
+import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.server.WebFilter;
 
-@EnableWebFluxSecurity
-//@Configuration(proxyBeanMethods = false)
+//@EnableWebFluxSecurity
+@Configuration(proxyBeanMethods = false)
 public class SecurityConfig {
 
   @Bean
@@ -27,5 +30,16 @@ public class SecurityConfig {
         sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
       .csrf(AbstractHttpConfigurer::disable)
       .build();
+  }
+
+  @Bean
+  public JwtAuthenticationConverter jwtAuthenticationConverter() {
+    var jwtGrantedAuthoritiesConverter = new JwtGrantedAuthoritiesConverter();
+    jwtGrantedAuthoritiesConverter.setAuthorityPrefix("ROLE_");
+    jwtGrantedAuthoritiesConverter.setAuthoritiesClaimName("roles");
+
+    var jwtAuthenticationConverter = new JwtAuthenticationConverter();
+    jwtAuthenticationConverter.setJwtGrantedAuthoritiesConverter(jwtGrantedAuthoritiesConverter);
+    return jwtAuthenticationConverter;
   }
 }
