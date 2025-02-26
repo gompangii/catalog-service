@@ -1,19 +1,19 @@
 package com.polarbookshop.catalogservice.domain;
 
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+
 import com.polarbookshop.catalogservice.config.DataConfig;
 import org.junit.jupiter.api.Test;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.jdbc.DataJdbcTest;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.context.annotation.Import;
 import org.springframework.data.jdbc.core.JdbcAggregateTemplate;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ActiveProfiles;
-import org.testcontainers.containers.MariaDBContainer;
-import org.testcontainers.junit.jupiter.Container;
-
-import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -22,9 +22,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @ActiveProfiles("integration")
 class BookRepositoryJdbcTests {
-  @Container
-  MariaDBContainer MARIADB_CONTAINER = new MariaDBContainer("mariadb:10.11");
-
 
   @Autowired
   private BookRepository bookRepository;
@@ -79,6 +76,25 @@ class BookRepositoryJdbcTests {
   void existsByIsbnWhenNotExisting() {
     boolean existing = bookRepository.existsByIsbn("1234561240");
     assertThat(existing).isFalse();
+  }
+
+  @Test
+  void whenCreateBookNotAuthenticatedThenNoAuditMetadata() {
+    var bookToCreate = Book.of("1232343456", "Title", "Author", 12.90, "Polarsophia");
+    var createdBook = bookRepository.save(bookToCreate);
+
+    assertThat(createdBook.createdBy()).isNull();
+    assertThat(createdBook.lastModifiedBy()).isNull();
+  }
+
+  @Test
+  @WithMockUser("john")
+  void whenCreateBookAuthenticatedThenAuditMetadata() {
+    var bookToCreate = Book.of("1232343457", "Title", "Author", 12.90, "Polarsophia");
+    var createdBook = bookRepository.save(bookToCreate);
+
+    assertThat(createdBook.createdBy()).isEqualTo("john");
+    assertThat(createdBook.lastModifiedBy()).isEqualTo("john");
   }
 
   @Test
