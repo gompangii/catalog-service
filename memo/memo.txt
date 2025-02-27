@@ -82,3 +82,17 @@ CREATE TABLE book (
 ## 테스트를 위한 기본 Docker Container 실행
  > docker compose up -d polar-ui polar-keycloak polar-redis
 
+# 12.4.1 스프링 보안 및 스프링 데이터 JDBC를 사용한 데이터 감사
+DROP TABLE IF EXISTS book;
+CREATE TABLE book (
+	id                  INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	author              VARCHAR(255) NOT NULL,
+	isbn                VARCHAR(255) NOT NULL UNIQUE,
+	price               DOUBLE NOT NULL,
+	title               VARCHAR(255) NOT NULL,
+	created_date        TIMESTAMP NOT NULL,
+    last_modified_date  TIMESTAMP NOT NULL,
+    created_by 			VARCHAR(255),
+    last_modified_by    VARCHAR(255),
+	`version`           INT NOT NULL
+);
