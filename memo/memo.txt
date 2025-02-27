@@ -80,7 +80,7 @@ CREATE TABLE book (
 
 # 12.2.1 토큰사용자 지정 및 사용자 역할 전파
 ## 테스트를 위한 기본 Docker Container 실행
- > docker compose up -d polar-ui polar-keycloak polar-redis
+ > docker compose up -d polar-ui polar-keycloak polar-redis polar-rabbitmq
 
 # 12.4.1 스프링 보안 및 스프링 데이터 JDBC를 사용한 데이터 감사
 DROP TABLE IF EXISTS book;
