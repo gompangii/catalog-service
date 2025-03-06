@@ -20,6 +20,7 @@ public class BookService {
   }
 
   public Book addBookToCatalog(Book book) {
+
     if(bookRepository.existsByIsbn(book.isbn())) {
       throw new BookAlreadyExistsException(book.isbn());
     }
