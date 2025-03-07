@@ -50,5 +50,7 @@ management:
     health:
       show-details: always
       show-components: always
+      probes:
+        enabled: true
 polar:
   greeting: Welcome to the local book catalog!
