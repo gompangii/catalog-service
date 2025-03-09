@@ -41,6 +41,14 @@ spring:
       resourceserver:
         jwt:
           issuer-uri: http://192.168.56.40:8080/realms/PolarBookshop
+
+logging:
+  pattern:
+    level: "%5p [${spring.application.name},%X{trace_id},%X{span_id}]"
+
+info:
+  system: Polar Bookshop
+
 management:
   endpoints:
     web:
