@@ -17,7 +17,7 @@ spring:
     import: "optional:configserver:"
   cloud:
     config:
-      uri: http://192.168.56.40:8888
+      uri: http://192.168.56.41:8888
       request-connection-timeout: 5000  # 5초
       request-read-timeout: 5000   # 5초
       fail-fast: false   # 운영환경은 true로 설정, 컨피그 서버가 기동 되지 않아고 클라이언트 기동 가능
@@ -40,7 +40,7 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: http://192.168.56.40:8080/realms/PolarBookshop
+          issuer-uri: http://192.168.56.41:8080/realms/PolarBookshop
 
 logging:
   pattern:
