@@ -47,13 +47,15 @@ logging:
     level: "%5p [${spring.application.name},%X{trace_id},%X{span_id}]"
 
 info:
-  system: Polar Bookshop
+  env:
+    enabled: true
+  #system: Polar Bookshop
 
 management:
   endpoints:
     web:
       exposure:
-        include: flyway, health, prometheus
+        include: flyway, health, info, prometheus
   endpoint:
     health:
       show-details: always
