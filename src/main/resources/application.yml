@@ -14,9 +14,10 @@ spring:
   lifecycle:
     timeout-per-shutdown-phase: 15s
   config:
-    import: "optional:configserver:"
+    import: "" # When using Config Service, add "optional:configserver:"
   cloud:
     config:
+      enabled: false # When using Config Service, set to true
       uri: http://192.168.56.41:8888
       request-connection-timeout: 5000  # 5초
       request-read-timeout: 5000   # 5초
