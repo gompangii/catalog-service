@@ -96,3 +96,9 @@ CREATE TABLE book (
     last_modified_by    VARCHAR(255),
 	`version`           INT NOT NULL
 );
+
+# 14.2.1 컨피그맵을 통한 스프링 부트 설정
+## 책 내용대로 port-forward하면 로컬에서 웹브라우저로 접근이 안됨
+## 로컬에서 접근할때 URL(IP)를 kubctl port-forwad 명령을 실행 시킨 서버 IP로 해야 함
+## $ kubectl port-forward service/catalog-service 9001:80
+     -> kubectl port-forward --address 0.0.0.0 service/catalog-service 9001:80
