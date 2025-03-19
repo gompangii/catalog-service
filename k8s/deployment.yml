@@ -34,7 +34,7 @@ spec:
               value: "50"
             - name: SPRING_CLOUD_CONFIG_URI
               value: http://config-service
-          libenessProbe:
+          livenessProbe:
             httpGet:
               path: /actuator/health/liveness
               port: 9001
