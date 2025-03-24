@@ -30,6 +30,8 @@ spec:
           ports:
             - containerPort: 9001
           env:
+            - name: JAVA_OPTS
+              value: "-Xms256m -Xmx512m"
             - name: BPL_JVM_THREAD_COUNT
               value: "50"
             - name: SPRING_CLOUD_CONFIG_URI
